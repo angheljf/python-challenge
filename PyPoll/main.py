@@ -12,22 +12,19 @@ otooley_votes = 0
 # Set path for file
 csvpath = '../git/python-challenge/PyPoll/Resources/election_data.csv'
 # Open and Read file
-with open (csvpath, newline="") as csvfile:
-    # csvreader set variable and delimiter for data
-    csvreader = csv.reader(csvfile, delimiter=",")
-    csvheader = next(csvreader)
-    # Read the header and the first row to check data 
-    # print(f"Header: {csvheader}")
-    
+with open (csvpath) as csvfile:
+    # Found new way to read file using .DictReader
+    csvreader = csv.DictReader(csvfile)
+   
     for row in csvreader:
         # Calculate total votes
         total_votes += 1
         # Calculate votes for each candidate
-        if (row[2] == "Khan"):
+        if (row["Candidate"] == "Khan"):
             khan_votes += 1
-        elif (row[2] == "Correy"):
+        elif (row["Candidate"] == "Correy"):
             correy_votes += 1
-        elif (row[2] == "Li"):
+        elif (row["Candidate"] == "Li"):
             li_votes += 1
         else:
             otooley_votes += 1
